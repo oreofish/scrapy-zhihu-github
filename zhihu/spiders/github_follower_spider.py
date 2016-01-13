@@ -29,7 +29,7 @@ class GithubUserSpider(CrawlSpider):
     def __init__(self,  *a,  **kwargs):
         super(GithubUserSpider, self).__init__(*a, **kwargs)
         import pymongo
-        connection = pymongo.Connection("localhost", 27017)
+        connection = pymongo.MongoClient("localhost", 27017)
         self.db = connection["zhihu"]
         self.gh_user_col = self.db["gh_user"]
 

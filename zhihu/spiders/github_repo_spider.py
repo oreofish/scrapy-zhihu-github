@@ -24,7 +24,7 @@
 #
 #     basic_url ="https://github.com/search?type=Repositories&ref=searchresults"
 #
-#     connection = pymongo.Connection("localhost", 27017)
+#     connection = pymongo.MongoClient("localhost", 27017)
 #     db = connection["zhihu"]
 #     gh_user_col = db["gh_user"]
 #

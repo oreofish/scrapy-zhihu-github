@@ -30,7 +30,7 @@ class ZhihuLoginSpider(CrawlSpider):
         )]
 
     def after_login(self, response):
-        connection = pymongo.Connection("localhost", 27017)
+        connection = pymongo.MongoClient("localhost", 27017)
         self.db = connection["zhihu"]
         self.zh_user_col = self.db["zh_user"]
 

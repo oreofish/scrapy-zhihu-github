@@ -51,7 +51,7 @@ class JsonWithEncodingPipeline(object):
 class MongoDBPipeline(object):
     def __init__(self):
         import pymongo
-        connection = pymongo.Connection("localhost", 27017)
+        connection = pymongo.MongoClient("localhost", 27017)
         self.db = connection["zhihu"]
         self.zh_user_col = self.db["zh_user"]
         self.zh_ask_col = self.db["zh_ask"]
