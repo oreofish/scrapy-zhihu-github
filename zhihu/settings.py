@@ -5,8 +5,8 @@ BOT_NAME = 'zhihu'
 SPIDER_MODULES = ['zhihu.spiders']
 NEWSPIDER_MODULE = 'zhihu.spiders'
 
-LOG_FILE = 'zhihu.log'
-LOG_LEVEL= 'INFO'
+#LOG_FILE = 'zhihu.log'
+#LOG_LEVEL= 'INFO'
 
 COOKIES_DEBUG = False
 RETRY_ENABLED = False
@@ -25,17 +25,25 @@ CONCURRENT_REQUESTS_PER_SPIDER=100
 DNSCACHE_ENABLED = True
 
 DOWNLOAD_DELAY = 0.5
+#RANDOMIZE_DOWNLOAD_DELAY = True
 DOWNLOAD_TIMEOUT = 10
+
+RETRY_TIMES = 20
+COOKIES_ENABLES = False
 
 ITEM_PIPELINES = {
     #'zhihu.pipelines.DoNothingPipeline': 300,
     #'zhihu.pipelines.JsonWithEncodingPipeline': 300,
     'zhihu.pipelines.MongoDBPipeline': 300,
+    #'scrapy.contrib.pipeline.images.ImagesPipeline': 1
     }
+
+IMAGES_STORE = '/tmp/newsmth_img'
 
 DOWNLOADER_MIDDLEWARES = {
     'zhihu.misc.middleware.CustomHttpProxyMiddleware': 80,
-    #'zhihu.misc.middleware.CustomUserAgentMiddleware': 81,
+    'zhihu.misc.middleware.CustomUserAgentMiddleware': 81,
+    'zhihu.misc.middleware.CustomRetryMiddleware': 100,
     }
 
 SCHEDULER_ORDER = 'BFO'

@@ -5,9 +5,7 @@
 # Don't forget to add your pipeline to the ITEM_PIPELINES setting
 # See: http://doc.scrapy.org/en/latest/topics/item-pipeline.html
 
-from zhihu.items import ZhihuUserItem, ZhihuAskItem, ZhihuFollowersItem, ZhihuFolloweesItem, ZhihuAnswerItem,GithubUserItem,GithubRepoItem, \
-    OutofmemoryUserItem
-
+from zhihu.items import *
 import json
 
 class DoNothingPipeline(object):
@@ -63,6 +61,8 @@ class MongoDBPipeline(object):
         self.om_user_col = self.db["om_user"]
         self.gh_repo_col = self.db["gh_repo"]
 
+        self.smth_board_col = self.db["smth_board"]
+
     def saveOrUpdate(self,collection,item):
         _id= dict(item).get("_id")
 
@@ -102,6 +102,9 @@ class MongoDBPipeline(object):
 
         elif isinstance(item, GithubRepoItem):
             self.saveOrUpdate(self.gh_repo_col,item)
+
+        elif isinstance(item, SmthBoardItem):
+            self.saveOrUpdate(self.smth_board_col,item)
 
         return item
 

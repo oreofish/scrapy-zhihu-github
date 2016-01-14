@@ -27,3 +27,13 @@ class CustomUserAgentMiddleware(object):
     def process_request(self, request, spider):
         agent = random.choice(AGENTS)
         request.headers['User-Agent'] = agent
+
+
+class CustomRetryMiddleware(object):
+    def process_response(self, request, response, spider):
+        if 'http://18.20.18.20' in response.body:
+            logging.warning('Got wrong flash page')
+            return request
+
+        return response
+

@@ -137,3 +137,19 @@ class DoubanSubjectItem(Item):
     content_intro = Field()
     author_intro = Field()
     tags = Field()
+
+
+class SmthBoardItem(Item):
+    # define the fields for your item here like:
+    # name = Field()
+    url = Field()
+    title = Field()
+    post_time = Field()
+    author = Field()
+
+
+class MyPhotoItem(Item):
+    url = Field()
+    title = Field()
+    image_urls = Field()
+    images = Field()
